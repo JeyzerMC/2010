@@ -10,14 +10,9 @@ public class Main
 		/**
 		 * Exercice 1
 		 */
-<<<<<<< HEAD
-
-		PixelMap pmc = new PixelMap("/ed.ppm");
-=======
 		String location = "./Lab1Src/src/ed.ppm";
 		location = "ed.ppm";
 		PixelMap pmc = new PixelMap(location);
->>>>>>> af5daf8433e908055617df591b8a1c4b10333c00
 		PixelMap pmg = pmc.toGrayImage();
 		PixelMap pmb = pmc.toBWImage();
 
