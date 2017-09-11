@@ -66,8 +66,8 @@ public class TransparentPixel extends AbstractPixel
 	 */
 	public TransparentPixel Negative()
 	{
-		int[] rgba = new int[] {255-rgba[0],255-rgba[1],255-rgba[2],rgba[3]};
-		TransparentPixel tp = new TransparentPixel( rgba );
+		int[] rgbaf = new int[] {255-rgba[0],255-rgba[1],255-rgba[2],rgba[3]};
+		TransparentPixel tp = new TransparentPixel( rgbaf );
 		return tp;
 		
 	}
