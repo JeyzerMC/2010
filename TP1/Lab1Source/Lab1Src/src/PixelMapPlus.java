@@ -116,8 +116,10 @@ public class PixelMapPlus extends PixelMap implements ImageOperations
 		if(w < 0 || h < 0)
 			throw new IllegalArgumentException();
 		
-		// compl�ter
-		
+		// compl�ter JE CROIS QUE C'EST CA
+		this.height = h;
+		this.width = w;
+		this.imageData = new AbstractPixel[h][w];
 	}
 	
 	/**

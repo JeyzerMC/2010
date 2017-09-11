@@ -7,11 +7,15 @@ public class Main
 	 */
 	public static void main(String[] args) 
 	{
+
+		String location = "./src/ed.ppm";
+		// location = "./Lab1Src/src/ed.ppm";
+		location = "ed.ppm";
+
 		/**
 		 * Exercice 1
 		 */
-		String location = "./Lab1Src/src/ed.ppm";
-		location = "ed.ppm";
+
 		PixelMap pmc = new PixelMap(location);
 		PixelMap pmg = pmc.toGrayImage();
 		PixelMap pmb = pmc.toBWImage();
@@ -35,9 +39,9 @@ public class Main
 
 		/**
 		 * Exercice 2
-		 
+		*/
 		
-		// PixelMapPlus pmp = new PixelMapPlus("./src/ed.ppm");
+		// PixelMapPlus pmp = new PixelMapPlus(location);
 
 		// PixelMapPlus hpmp = new PixelMapPlus( pmp );
 		// hpmp.zoomIn(0, 0, 2);
@@ -81,9 +85,7 @@ public class Main
 		// pmp.inverser();
 		
 		// wName = "Edsger Dijkstra";
-		// new DisplayImageWindow(wName, pmp);
+		// new DisplayImageWindow(wName, hpmp);
 		
-//		System.out.println("WESH ALLO");*/
-
 	}
 }
