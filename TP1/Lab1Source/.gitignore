@@ -1,4 +1,4 @@
 /bin/
-.class
-.project
-.classpath
+*.class
+*.project
+*.classpath
