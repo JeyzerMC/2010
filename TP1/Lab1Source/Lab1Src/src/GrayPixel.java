@@ -60,7 +60,7 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	public GrayPixel toGrayPixel()
 	{
-		return new GrayPixel(pixel)
+		return new GrayPixel(pixel);
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	public AbstractPixel Negative()
 	{
-		return new GrayPixel(255 - pixel)
+		return new GrayPixel(255 - pixel);
 	}
 	
 	public void setAlpha(int alpha)
