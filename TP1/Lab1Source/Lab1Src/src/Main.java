@@ -34,7 +34,7 @@ public class Main
 
 		/**
 		 * Exercice 2
-		 */
+		 
 		
 		PixelMapPlus pmp = new PixelMapPlus("./src/ed.ppm");
 
@@ -82,7 +82,7 @@ public class Main
 		wName = "Edsger Dijkstra";
 		new DisplayImageWindow(wName, pmp);
 		
-//		System.out.println("WESH ALLO");
+//		System.out.println("WESH ALLO");*/
 
 	}
 }

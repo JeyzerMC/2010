@@ -7,6 +7,7 @@
 public class GrayPixel  extends AbstractPixel 
 {
 	int pixel; // donnee du pixel
+	public static final int SEUIL_BW = 127;
 	
 	/**
 	 * Constructeur par defaut (pixel blanc)
@@ -22,7 +23,7 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	GrayPixel(int pixel)
 	{
-		// compléter
+		this.pixel = pixel;
 		
 	}
 	
@@ -48,8 +49,10 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	public BWPixel toBWPixel()
 	{
-		// compléter
-		
+		BWPixel bwp = new BWPixel(
+			(pixel > 127) ? true : false
+				);
+		return bwp;
 	}
 	
 	/**
@@ -57,8 +60,7 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	public GrayPixel toGrayPixel()
 	{
-		// compléter
-		
+		return new GrayPixel(pixel)
 	}
 	
 	/**
@@ -66,13 +68,19 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	public ColorPixel toColorPixel()
 	{
-		// compléter
-		
+		int[] rgb = new int[3];
+		rgb[0] = rgb[1] = rgb[2] = pixel;
+		ColorPixel cp = new ColorPixel( rgb );
+		return cp;
 	}
 	
 	public TransparentPixel toTransparentPixel()
 	{
-		// compléter
+		int[] rgba = new int[4];
+		rgba[0] = rgba[1] = rgba[2] = pixel;
+		rgba[3] = 255;
+		TransparentPixel cp = new TransparentPixel( rgba );
+		return cp;
 		
 	}
 	
@@ -81,7 +89,7 @@ public class GrayPixel  extends AbstractPixel
 	 */
 	public AbstractPixel Negative()
 	{
-		// compléter
+		return new GrayPixel(255 - pixel)
 	}
 	
 	public void setAlpha(int alpha)
