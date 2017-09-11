@@ -37,7 +37,10 @@ public class ColorPixel extends AbstractPixel
 	public BWPixel toBWPixel()
 	{
 		// compléter
-		
+		int moyenne = rgb[0] + rgb[1] + rgb[2];
+		moyenne /= 3;
+
+		return (moyenne <= 127)? new BWPixel(false): new BWPixel(true);
 	}
 	
 	/**
@@ -46,7 +49,7 @@ public class ColorPixel extends AbstractPixel
 	public GrayPixel toGrayPixel()
 	{
 		// compléter
-		
+		return new GrayPixel();		
 	}
 	
 	/**
