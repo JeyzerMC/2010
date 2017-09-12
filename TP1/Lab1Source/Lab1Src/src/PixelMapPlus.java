@@ -104,7 +104,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * @param clockWise : Direction de la rotation 
 	 */
 	public void rotate(int x, int y, double angleRadian) {
-		//Version Test Mehdi
 		AbstractPixel[][] rotatedMat = new AbstractPixel[height][width];
 		int xInit, yInit;
 		double cosThetha = Math.cos(angleRadian);
@@ -134,7 +133,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 		if (w < 0 || h < 0)
 			throw new IllegalArgumentException();
 
-		// Version Test Mehdi
 		double ratioWidth = this.width * 1.0 / w;
 		double ratioHeight = this.height * 1.0 / h;
 		int scaledRow, scaledCol;
@@ -156,12 +154,10 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Insert pm dans l'image a la position row0 col0
 	 */
 	public void inset(PixelMap pm, int row0, int col0) {
-		// Version Test Mehdi
 		for (int row = row0; row < this.height; row++)
 			for (int col = col0; col < this.width; col++)
 				if ((row - row0) < pm.height && (col - col0) < pm.width)
 					imageData[row][col] = pm.getPixel(row - row0, col - col0);
-		// imageData[row][col] = pm.imageData[row - row0][ col - col0];
 	}
 
 	/**
@@ -174,7 +170,7 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 
 		for (int row = 0; row < h; row++)
 			for (int col = 0; col < w; col++)
-				if (row > this.height || col > this.width)
+				if (row >= this.height || col >= this.width)
 					croppedMat[row][col] = new BWPixel(true);
 				else
 					croppedMat[row][col] = imageData[row][col];

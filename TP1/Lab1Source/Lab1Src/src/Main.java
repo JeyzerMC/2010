@@ -42,16 +42,17 @@ public class Main
 		// TEST ==================================
 
 		PixelMapPlus pmTest = new PixelMapPlus(location);
-		new DisplayImageWindow("Test Normal", pmTest, 50, 50);
+		// new DisplayImageWindow("Test Normal", pmTest, 50, 50);
 
 		// pmTest.rotate(pmTest.height/2, pmTest.width/2, Math.toRadians(180));
 		pmTest.resize(pmTest.height / 2, pmTest.width / 2);
-		pmTest.convertToBWImage();;
+		pmTest.convertToBWImage();
 		new DisplayImageWindow("Test Resize", pmTest, 800, 50);
 		
 		PixelMapPlus pmTest2 = new PixelMapPlus(location);
-		pmTest2.inset(pmTest, 200, 200);
-		new DisplayImageWindow("Test Inset", pmTest2, 50, 50);
+		// pmTest2.inset(pmTest, 200, 200);
+		pmTest2.crop(300, 200);
+		new DisplayImageWindow("Test Crop", pmTest2, 50, 50);
 
 
 		
