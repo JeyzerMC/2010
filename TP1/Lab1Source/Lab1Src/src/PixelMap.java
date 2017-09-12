@@ -246,8 +246,10 @@ public class PixelMap {
 		else if (header.equals("P3")) {
 			imtype = ImageType.Color;
 			ExpectedColors = 3;
-		} else
+		} else{
+			br.close(); //Mon ajout pour enlever le warning
 			throw new IOException(fileName + " : ne contient pas le bon entête");
+		}
 
 		while ((buffer = br.readLine()) != null) {
 			if (buffer.length() > 0 && buffer.charAt(0) != '#') {

@@ -9,6 +9,7 @@ public class Main
 	{
 
 		String location = "./src/ed.ppm";
+
 		// location = "./Lab1Src/src/ed.ppm";
 		location = "ed.ppm";
 
@@ -85,6 +86,7 @@ public class Main
 		// pmp.inverser();
 		
 		// wName = "Edsger Dijkstra";
+		// new DisplayImageWindow(wName, pmp);
 		// new DisplayImageWindow(wName, hpmp);
 		
 	}
