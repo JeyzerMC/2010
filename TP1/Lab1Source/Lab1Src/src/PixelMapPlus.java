@@ -142,8 +142,8 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 
 		for (int row = 0; row < h; row++)
 			for (int col = 0; col < w; col++) {
-				scaledRow = (int) Math.floor(row * ratioHeight);
-				scaledCol = (int) Math.floor(col * ratioWidth);
+				scaledRow = (int) (row * ratioHeight);
+				scaledCol = (int) (col * ratioWidth);
 				scaledMat[row][col] = imageData[scaledRow][scaledCol];
 			}
 
@@ -159,7 +159,9 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 		// Version Test Mehdi
 		for (int row = row0; row < this.height; row++)
 			for (int col = col0; col < this.width; col++)
-				imageData[row][col] = pm.getPixel(row - row0, col - col0);
+				if ((row - row0) < pm.height && (col - col0) < pm.width)
+					imageData[row][col] = pm.getPixel(row - row0, col - col0);
+		// imageData[row][col] = pm.imageData[row - row0][ col - col0];
 	}
 
 	/**

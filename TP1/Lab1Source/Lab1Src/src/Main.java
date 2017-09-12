@@ -46,7 +46,14 @@ public class Main
 
 		// pmTest.rotate(pmTest.height/2, pmTest.width/2, Math.toRadians(180));
 		pmTest.resize(pmTest.height / 2, pmTest.width / 2);
+		pmTest.convertToBWImage();;
 		new DisplayImageWindow("Test Resize", pmTest, 800, 50);
+		
+		PixelMapPlus pmTest2 = new PixelMapPlus(location);
+		pmTest2.inset(pmTest, 200, 200);
+		new DisplayImageWindow("Test Inset", pmTest2, 50, 50);
+
+
 		
 		// =======================================
 
