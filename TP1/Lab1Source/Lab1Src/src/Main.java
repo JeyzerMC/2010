@@ -45,8 +45,8 @@ public class Main
 		new DisplayImageWindow("Test Normal", pmTest, 50, 50);
 
 		// pmTest.rotate(pmTest.height/2, pmTest.width/2, Math.toRadians(180));
-		pmTest.resize(pmTest.height/3, pmTest.width/3);
-		new DisplayImageWindow("Test Rotate", pmTest, 800, 50);
+		pmTest.resize(pmTest.height / 2, pmTest.width / 2);
+		new DisplayImageWindow("Test Resize", pmTest, 800, 50);
 		
 		// =======================================
 

@@ -130,13 +130,13 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * @param w : nouvelle largeur
 	 * @param h : nouvelle hauteur
 	 */
-	public void resize(int w, int h) throws IllegalArgumentException {
+	public void resize(int h, int w) throws IllegalArgumentException {
 		if (w < 0 || h < 0)
 			throw new IllegalArgumentException();
 
 		// Version Test Mehdi
-		double ratioWidth = this.width / w;
-		double ratioHeight = this.height / h;
+		double ratioWidth = this.width * 1.0 / w;
+		double ratioHeight = this.height * 1.0 / h;
 		int scaledRow, scaledCol;
 		AbstractPixel[][] scaledMat = new AbstractPixel[h][w];
 
