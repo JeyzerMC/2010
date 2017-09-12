@@ -1,3 +1,4 @@
+import java.io.File;
 
 public class Main 
 {
@@ -9,34 +10,45 @@ public class Main
 	{
 
 		String location = "./src/ed.ppm";
-
-		// location = "./Lab1Src/src/ed.ppm";
-		location = "ed.ppm";
+		File f = new File(location);
+		if(!f.exists())
+			location = "ed.ppm";
 
 		/**
 		 * Exercice 1
 		 */
 
-		PixelMap pmc = new PixelMap(location);
-		PixelMap pmg = pmc.toGrayImage();
-		PixelMap pmb = pmc.toBWImage();
+		// PixelMap pmc = new PixelMap(location);
+		// PixelMap pmg = pmc.toGrayImage();
+		// PixelMap pmb = pmc.toBWImage();
 
-		PixelMap pmt = pmc.toTransparentImage();
-		for(int i = 0; i < pmt.height; ++i)
-			for(int j = 0; j < pmt.width; ++j)
-				pmt.getPixel(i, j).setAlpha(127);
+		// PixelMap pmt = pmc.toTransparentImage();
+		// for(int i = 0; i < pmt.height; ++i)
+		// 	for(int j = 0; j < pmt.width; ++j)
+		// 		pmt.getPixel(i, j).setAlpha(127);
 
-		String wName = "Edsger Dijkstra (original)";
-		new DisplayImageWindow(wName, pmc, 50, 50);
+		// String wName = "Edsger Dijkstra (original)";
+		// new DisplayImageWindow(wName, pmc, 50, 50);
 
-		wName = "Edsger Dijkstra (gris)";
-		new DisplayImageWindow(wName, pmg, 50+50, 50+50);
+		// wName = "Edsger Dijkstra (gris)";
+		// new DisplayImageWindow(wName, pmg, 50+50, 50+50);
 
-		wName = "Edsger Dijkstra (B&W)";
-		new DisplayImageWindow(wName, pmb, 50+100, 50+100);
+		// wName = "Edsger Dijkstra (B&W)";
+		// new DisplayImageWindow(wName, pmb, 50+100, 50+100);
 
-		wName = "Edsger Dijkstra (Transparent)";
-		new DisplayImageWindow(wName, pmt, 200, 200);
+		// wName = "Edsger Dijkstra (Transparent)";
+		// new DisplayImageWindow(wName, pmt, 200, 200);
+
+		// TEST ==================================
+
+		PixelMapPlus pmTest = new PixelMapPlus(location);
+		new DisplayImageWindow("Test Normal", pmTest, 50, 50);
+
+		// pmTest.rotate(pmTest.height/2, pmTest.width/2, Math.toRadians(180));
+		pmTest.resize(pmTest.height/3, pmTest.width/3);
+		new DisplayImageWindow("Test Rotate", pmTest, 800, 50);
+		
+		// =======================================
 
 		/**
 		 * Exercice 2

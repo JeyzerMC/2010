@@ -112,17 +112,17 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++) {
-
+				// CHECKER SI X = ROW ET Y = COL OU INVERSE
 				xInit = (int) (cosThetha * row + sinThetha * col - cosThetha * x - sinThetha * y + x);
 				yInit = (int) (-sinThetha * row + cosThetha * col + sinThetha * x - cosThetha * y + y);
 
-				if (xInit > this.width || xInit < 0 || yInit > this.height || yInit < 0)
+				if (xInit >= this.height || xInit < 0 || yInit >= this.width || yInit < 0)
 					rotatedMat[row][col] = new BWPixel(true);
 				else
 					rotatedMat[row][col] = imageData[xInit][yInit];
 			}
 
-		imageData = rotatedMat;
+		this.imageData = rotatedMat;
 	}
 
 	/**
@@ -156,24 +156,46 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Insert pm dans l'image a la position row0 col0
 	 */
 	public void inset(PixelMap pm, int row0, int col0) {
-		// compl�ter
-
+		// Version Test Mehdi
+		for (int row = row0; row < this.height; row++)
+			for (int col = col0; col < this.width; col++)
+				imageData[row][col] = pm.getPixel(row - row0, col - col0);
 	}
 
 	/**
 	 * Decoupe l'image 
 	 */
 	public void crop(int h, int w) {
-		// compl�ter		
+		// Version Test Mehdi	
 
+		AbstractPixel[][] croppedMat = new AbstractPixel[h][w];
+
+		for (int row = 0; row < h; row++)
+			for (int col = 0; col < w; col++)
+				if (row > this.height || col > this.width)
+					croppedMat[row][col] = new BWPixel(true);
+				else
+					croppedMat[row][col] = imageData[row][col];
+
+		this.height = h;
+		this.width = w;
+		imageData = croppedMat;
 	}
 
 	/**
 	 * Effectue une translation de l'image 
 	 */
 	public void translate(int rowOffset, int colOffset) {
-		// compl�ter		
+		// Version Test Mehdi
+		AbstractPixel[][] translatedMat = new AbstractPixel[this.height][this.width];
 
+		for (int row = 0; row < this.height; row++)
+			for (int col = 0; col < this.width; col++)
+				if ((rowOffset + row) < this.height && (colOffset + col) < this.width && (rowOffset + row) > 0
+						&& (colOffset + col) > 0)
+					translatedMat[row][col] = imageData[row + rowOffset][col + colOffset];
+
+		imageData = translatedMat;
 	}
 
 	/**
@@ -186,7 +208,19 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 		if (zoomFactor < 1.0)
 			throw new IllegalArgumentException();
 
-		// compl�ter
+		// Version Test Mehdi
+		// AbstractPixel[][] zoomedMat = new AbstractPixel[this.height][this.width];
+
+		// for (int row = y - this.height / 2; row < y + this.height / 2; row++)
+		// 	for (int col = x - this.width / 2; col < x + this.width / 2; col++)
+		// 		zoomedMat[row - y][col - x] = imageData[row][col];
+
+		// imageData = zoomedMat;
+		// ========================================
+
+		// int rowOffset = (int) ()
+
+		// translate(rowOffset, colOffset);
 
 	}
 
