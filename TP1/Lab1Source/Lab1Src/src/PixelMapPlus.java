@@ -1,5 +1,7 @@
 import java.awt.PageAttributes.ColorType;
 
+import sun.nio.ch.EPollSelectorProvider;
+
 /**
  * Classe PixelMapPlus
  * Image de type noir et blanc, tons de gris ou couleurs
@@ -164,8 +166,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Decoupe l'image 
 	 */
 	public void crop(int h, int w) {
-		// Version Test Mehdi	
-
 		AbstractPixel[][] croppedMat = new AbstractPixel[h][w];
 
 		for (int row = 0; row < h; row++)
@@ -184,14 +184,17 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Effectue une translation de l'image 
 	 */
 	public void translate(int rowOffset, int colOffset) {
-		// Version Test Mehdi
 		AbstractPixel[][] translatedMat = new AbstractPixel[this.height][this.width];
-
+		int rowDecal, colDecal;
 		for (int row = 0; row < this.height; row++)
-			for (int col = 0; col < this.width; col++)
-				if ((rowOffset + row) < this.height && (colOffset + col) < this.width && (rowOffset + row) > 0
-						&& (colOffset + col) > 0)
-					translatedMat[row][col] = imageData[row + rowOffset][col + colOffset];
+			for (int col = 0; col < this.width; col++) {
+				rowDecal = row - rowOffset;
+				colDecal = col - colOffset;
+				if (rowDecal < this.height && colDecal < this.width && rowDecal > 0 && colDecal > 0)
+					translatedMat[row][col] = imageData[rowDecal][colDecal];
+				else
+					translatedMat[row][col] = new BWPixel(true);
+			}
 
 		imageData = translatedMat;
 	}
