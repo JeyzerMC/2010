@@ -42,8 +42,8 @@ public class Main {
 		PixelMapPlus pmTest = new PixelMapPlus(location);
 		// new DisplayImageWindow("Test Normal", pmTest, 50, 50);
 
-		// pmTest.rotate(pmTest.height / 2, pmTest.width / 2, Math.toRadians(180));
-		// pmTest.resize(pmTest.height / 2, pmTest.width / 2);
+		pmTest.rotate(pmTest.height / 2, pmTest.width / 2, Math.toRadians(180));
+		pmTest.resize(pmTest.height / 2, pmTest.width / 2);
 		// pmTest.convertToTransparentImage();
 		new DisplayImageWindow("Test Resize", pmTest, 800, 50);
 
@@ -51,8 +51,10 @@ public class Main {
 		// pmTest2.inset(pmTest, -100, 200);
 		// pmTest2.crop(300, 200);
 		// pmTest2.translate(-100, 100);
-		// pmTest2.zoomIn(pmTest.height / 2, pmTest.width / 2, 2);
-		new DisplayImageWindow("Test Translate", pmTest2, 50, 50);
+		// pmTest2.zoomIn(pmTest2.height / 2, pmTest2.width / 2, 2);
+		// pmTest2.negate();
+		// pmTest2.inverser();
+		new DisplayImageWindow("Test All", pmTest2, 50, 50);
 
 		// =======================================
 

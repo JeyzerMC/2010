@@ -244,7 +244,14 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	}
 
 	public void inverser() {
-		// compl�ter
+		// Version Test Medhi
+		AbstractPixel[][] tempPixels = new AbstractPixel[this.height][this.width];
 
+		for (int row = 0; row < this.height; row++)
+			for (int col = 0; col < this.width; col++) {
+				tempPixels[row][col] = imageData[this.height -1 - row][col];
+			}
+
+		imageData = tempPixels;
 	}
 }
