@@ -1,6 +1,8 @@
-import java.awt.PageAttributes.ColorType;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
-import sun.nio.ch.EPollSelectorProvider;
+// import java.awt.PageAttributes.ColorType;
+
+// import sun.nio.ch.EPollSelectorProvider;
 
 /**
  * Classe PixelMapPlus
@@ -113,14 +115,16 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++) {
-				// CHECKER SI X = ROW ET Y = COL OU INVERSE
-				xInit = (int) (cosThetha * row + sinThetha * col - cosThetha * x - sinThetha * y + x);
-				yInit = (int) (-sinThetha * row + cosThetha * col + sinThetha * x - cosThetha * y + y);
-
-				if (xInit >= this.height || xInit < 0 || yInit >= this.width || yInit < 0)
-					rotatedMat[row][col] = new BWPixel(true);
-				else
+				xInit = (int) Math.round(cosThetha * row + sinThetha * col - cosThetha * x - sinThetha * y + x);
+				yInit = (int) Math.round(-sinThetha * row + cosThetha * col + sinThetha * x - cosThetha * y + y);
+				if (xInit < this.height && xInit > 0 && yInit < this.width && yInit > 0)
 					rotatedMat[row][col] = imageData[xInit][yInit];
+				else if (xInit == this.height && yInit < this.width && yInit > 0)
+					rotatedMat[row][col] = imageData[xInit - 1][yInit];
+				else if (yInit == this.width && xInit < this.height && xInit > 0)
+					rotatedMat[row][col] = imageData[xInit][yInit - 1];
+				else
+					rotatedMat[row][col] = new BWPixel(true);
 			}
 
 		this.imageData = rotatedMat;
@@ -158,7 +162,7 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	public void inset(PixelMap pm, int row0, int col0) {
 		for (int row = row0; row < this.height; row++)
 			for (int col = col0; col < this.width; col++)
-				if ((row - row0) < pm.height && (col - col0) < pm.width)
+				if ((row - row0) < pm.height && (col - col0) < pm.width && row >= 0 && col >= 0)
 					imageData[row][col] = pm.getPixel(row - row0, col - col0);
 	}
 
@@ -190,7 +194,7 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 			for (int col = 0; col < this.width; col++) {
 				rowDecal = row - rowOffset;
 				colDecal = col - colOffset;
-				if (rowDecal < this.height && colDecal < this.width && rowDecal > 0 && colDecal > 0)
+				if (rowDecal < this.height && colDecal < this.width && rowDecal >= 0 && colDecal >= 0)
 					translatedMat[row][col] = imageData[rowDecal][colDecal];
 				else
 					translatedMat[row][col] = new BWPixel(true);
@@ -210,19 +214,20 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 			throw new IllegalArgumentException();
 
 		// Version Test Mehdi
-		// AbstractPixel[][] zoomedMat = new AbstractPixel[this.height][this.width];
+		int originalHeight = height;
+		int originalWidth = width;
 
-		// for (int row = y - this.height / 2; row < y + this.height / 2; row++)
-		// 	for (int col = x - this.width / 2; col < x + this.width / 2; col++)
-		// 		zoomedMat[row - y][col - x] = imageData[row][col];
+		int rowOffset = (int) (-1 * (x - height / (2.0 * zoomFactor)));
+		int colOffset = (int) (-1 * (y - width / (2.0 * zoomFactor)));
+		translate(rowOffset, colOffset);
 
-		// imageData = zoomedMat;
-		// ========================================
+		int newHeight = (int) (height * 1.0 / zoomFactor);
+		int newWidth = (int) (width * 1.0 / zoomFactor);
+		crop(newHeight, newWidth);
 
-		// int rowOffset = (int) ()
+		resize(originalHeight, originalWidth);
 
-		// translate(rowOffset, colOffset);
-
+		// A COMPLETER (SUR LES BORDS)
 	}
 
 	/**
