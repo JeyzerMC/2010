@@ -39,22 +39,22 @@ public class Main {
 
 		// TEST ==================================
 
-		PixelMapPlus pmTest = new PixelMapPlus(location);
+		// PixelMapPlus pmTest = new PixelMapPlus(location);
 		// new DisplayImageWindow("Test Normal", pmTest, 50, 50);
 
-		pmTest.rotate(pmTest.height / 2, pmTest.width / 2, Math.toRadians(180));
-		pmTest.resize(pmTest.height / 2, pmTest.width / 2);
-		// pmTest.convertToTransparentImage();
-		new DisplayImageWindow("Test Resize", pmTest, 800, 50);
+		// pmTest.rotate(pmTest.height / 2, pmTest.width / 2, Math.toRadians(180));
+		// pmTest.resize(pmTest.height / 2, pmTest.width / 2);
+		// // pmTest.convertToTransparentImage();
+		// new DisplayImageWindow("Test Resize", pmTest, 800, 50);
 
-		PixelMapPlus pmTest2 = new PixelMapPlus(location);
+		// PixelMapPlus pmTest2 = new PixelMapPlus(location);
 		// pmTest2.inset(pmTest, -100, 200);
 		// pmTest2.crop(300, 200);
 		// pmTest2.translate(-100, 100);
 		// pmTest2.zoomIn(pmTest2.height / 2, pmTest2.width / 2, 2);
 		// pmTest2.negate();
 		// pmTest2.inverser();
-		new DisplayImageWindow("Test All", pmTest2, 50, 50);
+		// new DisplayImageWindow("Test All", pmTest2, 50, 50);
 
 		// =======================================
 
@@ -62,24 +62,24 @@ public class Main {
 		 * Exercice 2
 		*/
 
-		// PixelMapPlus pmp = new PixelMapPlus(location);
+		PixelMapPlus pmp = new PixelMapPlus(location);
 
-		// PixelMapPlus hpmp = new PixelMapPlus( pmp );
-		// hpmp.zoomIn(0, 0, 2);
-		// hpmp.resize(hpmp.width/2, hpmp.height/2);
-		// int[] tMin = new int[3];
-		// tMin[0] = 110;
-		// tMin[1] = 110;
-		// tMin[2] = 110;
-		// int[] tMax = new int[3];
-		// tMax[0] = 220;
-		// tMax[1] = 220;
-		// tMax[2] = 220;
-		// int[] newColors = new int[3];
-		// newColors[0] = 255;
-		// newColors[1] = 255;
-		// newColors[2] = 255;
-		// hpmp.replaceColor(new ColorPixel(tMin), new ColorPixel(tMax), new ColorPixel(newColors));
+		PixelMapPlus hpmp = new PixelMapPlus( pmp );
+		hpmp.zoomIn(0, 0, 2);
+		hpmp.resize(hpmp.width/2, hpmp.height/2);
+		int[] tMin = new int[3];
+		tMin[0] = 110;
+		tMin[1] = 110;
+		tMin[2] = 110;
+		int[] tMax = new int[3];
+		tMax[0] = 220;
+		tMax[1] = 220;
+		tMax[2] = 220;
+		int[] newColors = new int[3];
+		newColors[0] = 255;
+		newColors[1] = 255;
+		newColors[2] = 255;
+		hpmp.replaceColor(new ColorPixel(tMin), new ColorPixel(tMax), new ColorPixel(newColors));
 
 		// PixelMapPlus gpmp = new PixelMapPlus( pmp );
 		// gpmp.zoomIn(0, gpmp.height, 2);
@@ -104,6 +104,7 @@ public class Main {
 
 		// wName = "Edsger Dijkstra";
 		// new DisplayImageWindow(wName, pmp);
+		new DisplayImageWindow("", pmp); // MON AJOUT
 		// new DisplayImageWindow(wName, hpmp);
 
 	}

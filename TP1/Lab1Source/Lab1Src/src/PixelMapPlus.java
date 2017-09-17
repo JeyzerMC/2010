@@ -1,4 +1,4 @@
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+// import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 // import java.awt.PageAttributes.ColorType;
 
@@ -239,17 +239,20 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * (sa valeur est entre min et max)
 	 */
 	public void replaceColor(AbstractPixel min, AbstractPixel max, AbstractPixel newPixel) {
-		// compl�ter
-
+		// Version Test Mehdi
+		for (int row = 0; row < this.height; row++)
+			for (int col = 0; col < this.width; col++)
+				if (imageData[row][col].compareTo(min) == 1 && imageData[row][col].compareTo(max) == -1)
+					imageData[row][col] = newPixel;
 	}
 
 	public void inverser() {
-		// Version Test Medhi
+		// Version Test Mehdi
 		AbstractPixel[][] tempPixels = new AbstractPixel[this.height][this.width];
 
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++) {
-				tempPixels[row][col] = imageData[this.height -1 - row][col];
+				tempPixels[row][col] = imageData[this.height - 1 - row][col];
 			}
 
 		imageData = tempPixels;
