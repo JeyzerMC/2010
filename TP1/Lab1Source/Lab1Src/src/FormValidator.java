@@ -1,11 +1,12 @@
 /**
  * Fichier principal pour l'exercice
- * @author : 
- * @date : 
+ * @author : Mehdi Chaid et Rose Hirigoyen
+ * @date : 24 septembre 2017
  */
 
 import java.util.Scanner;
 import java.util.Random;
+import java.io.File;
 
 public class FormValidator 
 {
@@ -34,10 +35,18 @@ public class FormValidator
 		PixelMapPlus[] pm =  new PixelMapPlus[ codeLength ];
 		for(int i=0; i<codeLength; i++)
 		{
-			String letter = code.substring(i, i+1);
-			String fileName = "./src/alphabet/" + letter + ".ppm";
-			pm[ i ] = new PixelMapPlus( fileName ); 
 			
+			String letter = code.substring(i, i+1);
+			
+
+			
+			
+			String fileName = "./src/alphabet/" + letter + ".ppm";
+			if (!new File(fileName).exists())
+				fileName = "./alphabet/" + letter + ".ppm";
+				
+			pm[ i ] = new PixelMapPlus( fileName );
+
 			switch( transform[i] )
 			{
 				case 1: 
@@ -117,41 +126,45 @@ public class FormValidator
 		di.dispose();
 	}
 	
-	/**
-	 * Genere et retourne un string de longueur length avec des caracteres aleatoires
-	 * choisis entre A et Z
-	 * @param length : longueur de la chaine de caractere a generer (inferieur ou egal a 10)
-	 */
-	private static String generateCode(int length)
-	{
-		if (length > 10) return null;
-		
-		char[] charKey = new char[ length ];
-		
-		Random generator = new Random( System.nanoTime() );
-		
-		// compl�ter
+		/**
+		 * Genere et retourne un string de longueur length avec des caracteres aleatoires
+		 * choisis entre A et Z
+		 * @param length : longueur de la chaine de caractere a generer (inferieur ou egal a 10)
+		 */
+		private static String generateCode(int length)
+		{
+			if (length > 10) return null;
+			
+			char[] charKey = new char[ length ];
+			Random generator = new Random( System.nanoTime() );
+			String  alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			int nb = alphabet.length();
 
-		// modifier
-		return null;
-	}
-	
-	/**
-	 * Genere et retourne plusieurs nombres aleatoires entre 0 et 9 (inclus) 
-	 * @param nb : longueur de la chaine de caractere a generer (inferieur ou egal a 10)
-	 */
-	private static int[] generateTransform(int nb)
-	{
-		if (nb > 10) return null;
-		
-		int[] charTransform = new int[ nb ];
-		
-		Random generator = new Random( System.nanoTime() );
-		
-		// compl�ter
+			for (int i = 0; i < length; i++)
+				charKey[i] = alphabet.charAt(generator.nextInt(nb));
+			
 
-		// modifier
-		return null;
+			return String.valueOf(charKey);
+		}
+		
+		/**
+		 * Genere et retourne plusieurs nombres aleatoires entre 0 et 9 (inclus) 
+		 * @param nb : longueur de la chaine de caractere a generer (inferieur ou egal a 10)
+		 */
+		private static int[] generateTransform(int nb)
+		{
+			if (nb > 10) return null;
+			
+			int[] charTransform = new int[ nb ];	
+			Random generator = new Random( System.nanoTime() );
+			int n = 10;
+
+			for (int i = 0; i < nb; i++)
+				charTransform[i] = generator.nextInt(n);
+			
+
+			return charTransform;
 	}
+
 
 }

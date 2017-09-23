@@ -9,8 +9,8 @@
  * Image de type noir et blanc, tons de gris ou couleurs
  * Peut lire et ecrire des fichiers PNM
  * Implemente les methodes de ImageOperations
- * @author : 
- * @date   : 
+ * @author : Mehdi Chaid et Rose Hirigoyen
+ * @date   : dimanche 24 septembre 2017
  */
 
 public class PixelMapPlus extends PixelMap implements ImageOperations {
@@ -54,7 +54,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Genere le negatif d'une image
 	 */
 	public void negate() {
-		// compl�ter
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				imageData[row][col] = imageData[row][col].Negative();
@@ -65,7 +64,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Convertit l'image vers une image en noir et blanc
 	 */
 	public void convertToBWImage() {
-		// compl�ter
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				imageData[row][col] = imageData[row][col].toBWPixel();
@@ -75,7 +73,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Convertit l'image vers un format de tons de gris
 	 */
 	public void convertToGrayImage() {
-		// compl�ter
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				imageData[row][col] = imageData[row][col].toGrayPixel();
@@ -85,7 +82,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * Convertit l'image vers une image en couleurs
 	 */
 	public void convertToColorImage() {
-		// compl�ter
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				imageData[row][col] = imageData[row][col].toColorPixel();
@@ -93,7 +89,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	}
 
 	public void convertToTransparentImage() {
-		// compl�ter
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				imageData[row][col] = imageData[row][col].toTransparentPixel();
@@ -115,8 +110,10 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++) {
+
 				xInit = (int) Math.round(cosThetha * row + sinThetha * col - cosThetha * x - sinThetha * y + x);
 				yInit = (int) Math.round(-sinThetha * row + cosThetha * col + sinThetha * x - cosThetha * y + y);
+
 				if (xInit < this.height && xInit > 0 && yInit < this.width && yInit > 0)
 					rotatedMat[row][col] = imageData[xInit][yInit];
 				else if (xInit == this.height && yInit < this.width && yInit > 0)
@@ -213,12 +210,34 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 		if (zoomFactor < 1.0)
 			throw new IllegalArgumentException();
 
-		// Version Test Mehdi
 		int originalHeight = height;
 		int originalWidth = width;
 
-		int rowOffset = (int) (-1 * (x - height / (2.0 * zoomFactor)));
-		int colOffset = (int) (-1 * (y - width / (2.0 * zoomFactor)));
+		int radiusHeight = (int) (height / (2.0 * zoomFactor));
+		int radiusWidth = (int) (width / (2.0 * zoomFactor));
+		
+		int rowOffset = (int) (-1 * (y - radiusHeight));
+		int colOffset = (int) (-1 * (x - radiusWidth));
+
+		if(y - radiusHeight < 0){
+			y  = radiusHeight; 
+			rowOffset = 0;
+		} 
+		else if(y + radiusHeight > height) {
+			rowOffset += (y + radiusHeight - height);
+		} 
+
+
+		if(x - radiusWidth < 0) {
+			x = radiusWidth;
+			colOffset = 0;
+		}
+
+		else if(x + radiusWidth > width) {
+			colOffset += (x + radiusWidth - width);
+		}
+
+
 		translate(rowOffset, colOffset);
 
 		int newHeight = (int) (height * 1.0 / zoomFactor);
@@ -227,7 +246,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 
 		resize(originalHeight, originalWidth);
 
-		// A COMPLETER (SUR LES BORDS)
 	}
 
 	/**
@@ -239,7 +257,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	 * (sa valeur est entre min et max)
 	 */
 	public void replaceColor(AbstractPixel min, AbstractPixel max, AbstractPixel newPixel) {
-		// Version Test Mehdi
 		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				if (imageData[row][col].compareTo(min) == 1 && imageData[row][col].compareTo(max) == -1)
@@ -247,7 +264,6 @@ public class PixelMapPlus extends PixelMap implements ImageOperations {
 	}
 
 	public void inverser() {
-		// Version Test Mehdi
 		AbstractPixel[][] tempPixels = new AbstractPixel[this.height][this.width];
 
 		for (int row = 0; row < this.height; row++)

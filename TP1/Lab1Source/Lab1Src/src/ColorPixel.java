@@ -1,7 +1,7 @@
 /**
  * Classe de pixel en couleurs 
- * @author :
- * @date : 
+ * @author : Mehdi Chaid et Rose Hirigoyen
+ * @date : 24 septembre 2017
  */
 
 public class ColorPixel extends AbstractPixel {
