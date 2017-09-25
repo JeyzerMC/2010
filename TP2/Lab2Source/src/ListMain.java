@@ -107,7 +107,7 @@ public class ListMain
                 return false;
             }
         }
-
+        
         if (!stack.empty()) {
             System.out.println("Erreur: la liste devrait être vide, mais elle ne l'est pas.");
             return false;
