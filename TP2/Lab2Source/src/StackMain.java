@@ -84,9 +84,14 @@ public class StackMain
         String output = "";
 
         ArrayStack<String> stack = new ArrayStack<>();
-         // À compléter
+        for (String word : words)
+            stack.push(word);
+
+        for(int i=0;i<words.length; i++)
+            output += stack.pop() + " ";
+
 		 
-        return output;
+        return output.trim();
     }
 
 }
