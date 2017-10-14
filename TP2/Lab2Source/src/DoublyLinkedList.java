@@ -71,8 +71,10 @@ public class DoublyLinkedList<AnyType>
 
     // Retourne le noeud à l'indice donné.
     // Complexité asymptotique: O(n)
-    private Node<AnyType> getNodeAt(int index)
+    private Node<AnyType> getNodeAt(int index) throws IndexOutOfBoundsException
     {
+        if(index >= size || index < 0) throw new IndexOutOfBoundsException("Index is out of bond");
+
         Node<AnyType> iterator = front;
 
         for(int i=0; i<index;i++)
@@ -85,11 +87,9 @@ public class DoublyLinkedList<AnyType>
     // Complexité asymptotique: O(n)
     public AnyType getAt(int index) throws IndexOutOfBoundsException
     {
-        if(index >= size || index < 0) throw new IndexOutOfBoundsException("WESH ALORS");
-        Node<AnyType> iterator = front;
-        
-        for(int i=0; i<index;i++)
-            iterator = iterator.getNext();
+        if(index >= size || index < 0) throw new IndexOutOfBoundsException("Index is out of bond");
+
+        Node<AnyType> iterator = getNodeAt(index);
 
         return iterator.getValue();
     }
@@ -98,7 +98,7 @@ public class DoublyLinkedList<AnyType>
     // Complexité asymptotique: O(1)
     public void popBack() throws EmptyListException
     {
-        if(size == 0) throw new EmptyListException("WESH ALORS");
+        if(size == 0) throw new EmptyListException("List is empty");
 
         if(size > 1){
             back = back.getPrev();
@@ -109,7 +109,6 @@ public class DoublyLinkedList<AnyType>
         }
         
         size--;
-        
     }
 
     // Retire l'élément au début de la liste."
@@ -205,8 +204,8 @@ public class DoublyLinkedList<AnyType>
             pushFront(item);
         }
         else{ //si dans le milieu
-            System.out.println("ici");
-            System.out.println(index);
+            // System.out.println("ici");
+            // System.out.println(index);
             nouv.getNext().setPrev(curr);
             nouv.getPrev().setNext(curr);
             size++;
