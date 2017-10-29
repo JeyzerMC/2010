@@ -1,6 +1,7 @@
 package probleme1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class HashFunctions 
@@ -95,22 +96,31 @@ public class HashFunctions
        * Confirmation des resultats de Exercice 2
        */
       // Effectues quelques tests aleatoires pour verifier les proprietes de taille
-      // pfhash = new LinearSpacePerfectHashing<Integer>();
+      pfhash = new LinearSpacePerfectHashing<Integer>();
             
-      // for(int i=0, nbElements = 10; i<40; ++i, nbElements += 10)
-      // {
-      //    pfhash.SetArray( randomIntegers( nbElements ) );
-      //    System.out.println( nbElements + "\t" + pfhash.Size() );
-      // }
+      for(int i=0, nbElements = 10; i<40; ++i, nbElements += 10)
+      {
+         pfhash.SetArray( randomIntegers( nbElements ) );
+         System.out.println( nbElements + "\t" + pfhash.Size() );
+      }
    }
    
    /**
     * Question 1
     */
-//    public static ArrayList<Integer> randomIntegers(int length)
-//    {
-//       return null;
-//    }
+    public static ArrayList<Integer> randomIntegers(int length)
+    {
+        ArrayList<Integer> maListe = new ArrayList<Integer>();
+        int seed = (int)(Math.random());
+        for (int i = 0; i <= 2*length; i++){
+            maListe.add((seed * i) + p);
+        }
+
+        Collections.shuffle(maListe);
+        maListe = new ArrayList<Integer>((maListe.subList(0,length)));
+        return maListe;
+
+    }
 }
 
 
