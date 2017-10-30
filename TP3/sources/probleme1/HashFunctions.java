@@ -63,6 +63,7 @@ public class HashFunctions
       System.out.println( "LinearSpacePerfectHashing:");
       System.out.println();
       
+      System.out.println(al);
       LinearSpacePerfectHashing<Integer> pfhash = new LinearSpacePerfectHashing<Integer>( al );
       
       // Verifie les proprietes d'occupation d'espace
@@ -110,17 +111,17 @@ public class HashFunctions
     */
     public static ArrayList<Integer> randomIntegers(int length)
     {
-        ArrayList<Integer> maListe = new ArrayList<Integer>();
-        int seed = (int)(Math.random());
-        for (int i = 0; i <= 2*length; i++){
-            maListe.add((seed * i) + p);
-        }
+    	Random rnd = new Random();
+    	ArrayList<Integer> myList = new ArrayList<Integer>();
+        int i;
+    	  while(myList.size() < length){
+          	i = rnd.nextInt(p);
+          	if(!myList.contains(i))
+          		myList.add(i);
+          }
+          return myList;
+      }
 
-        Collections.shuffle(maListe);
-        maListe = new ArrayList<Integer>((maListe.subList(0,length)));
-        return maListe;
-
-    }
 }
 
 
