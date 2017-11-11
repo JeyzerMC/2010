@@ -10,14 +10,14 @@ public class BibliothequeBst implements IBibliotheque
     // Explication:
     public void ajouterLivre(String livre)
     {
-        // À compléter
+        livres.insert(livre);
     }
 
     // Complexité: O(log(n))
     // Explication:
     public boolean contientLivre(String livre)
     {
-        // À compléter
+        return livres.contains(livre);
     }
 
     // Complexité: O(n)
@@ -26,7 +26,12 @@ public class BibliothequeBst implements IBibliotheque
     //              un parcours en ordre/ascendant.
     public String afficherLivresAlpha()
     {
-        // À compléter
+        String msg = "";
+        ArrayList<String> livres_en_ordre = livres.traverseInOrder();
+        for (String node : livres_en_ordre) {
+            msg += node + " ";
+        }
+        return msg;
     }
 
     // Complexité: O(n)
@@ -35,6 +40,12 @@ public class BibliothequeBst implements IBibliotheque
     //              un parcours en ordre inverse/descendant.
     public String afficherLivresAlphaInverse()
     {
-        // À compléter
+        String msg = "";
+        ArrayList<String> livres_en_ordre = livres.traverseReverseOrder();
+        for (String node : livres_en_ordre) {
+            msg += node + " ";
+        }
+
+        return msg;
     }
 }

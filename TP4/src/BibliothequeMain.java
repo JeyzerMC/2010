@@ -27,7 +27,6 @@ public class BibliothequeMain
         for (String livre : livres) {
             biblio.ajouterLivre(livre);
         }
-
         for (String livre : livres) {
             if (!isValidContient(biblio, livre, true)) {
                 return false;
