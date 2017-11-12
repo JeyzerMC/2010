@@ -21,7 +21,7 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
     }
 
     public void insert(T elem) { root = insert(root, elem); }
-
+    //À COMPLÉTER
     private Node<T> insert(Node<T> node, T elem)
     {
         if(node == null){
@@ -66,7 +66,8 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
  
     }
 
-    //Rotate with right child - right right
+    //(noms de fonctions tirés des notes de cours)
+    //Rotate with right child - right right - À COMPLÉTER
     private Node<T> balanceRightRight(Node<T> node)
     {
         Node k2 = node.right;
@@ -76,14 +77,14 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
 
         return k2;
     }
-    //DoubleWithRightChild - right left
+    //DoubleWithRightChild - right left - À COMPLÉTER
     private Node<T> balanceRightLeft(Node<T> node)
     {
         node.right = balanceLeftLeft(node.right);
         return balanceRightRight(node);
     }
 
-    //Rotate with left child - left left
+    //Rotate with left child - left left - À COMPLÉTER
     private Node<T> balanceLeftLeft(Node<T> node)
     {
         Node k2 = node.left;
@@ -94,7 +95,7 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
         return k2;
     }
 
-    //Double with left child - left right
+    //Double with left child - left right - À COMPLÉTER
     private Node<T> balanceLeftRight(Node<T> node)
     {
        node.left = balanceRightRight(node.left);

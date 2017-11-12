@@ -8,6 +8,7 @@ public class BibliothequeBst implements IBibliotheque
 
     // Complexité: O(log(n))
     // Explication:
+    // À COMPLÉTER
     public void ajouterLivre(String livre)
     {
         livres.insert(livre);
@@ -15,6 +16,7 @@ public class BibliothequeBst implements IBibliotheque
 
     // Complexité: O(log(n))
     // Explication:
+    // À COMPLÉTER
     public boolean contientLivre(String livre)
     {
         return livres.contains(livre);
@@ -24,6 +26,7 @@ public class BibliothequeBst implements IBibliotheque
     // Explication: Il ne suffit ici que de parcourir
     //              l'arbre de recherche binaire selon
     //              un parcours en ordre/ascendant.
+    // À COMPLÉTER
     public String afficherLivresAlpha()
     {
         String msg = "";
@@ -38,6 +41,7 @@ public class BibliothequeBst implements IBibliotheque
     // Explication: Il ne suffit ici que de parcourir
     //              l'arbre de recherche binaire selon
     //              un parcours en ordre inverse/descendant.
+    // À COMPLÉTER
     public String afficherLivresAlphaInverse()
     {
         String msg = "";

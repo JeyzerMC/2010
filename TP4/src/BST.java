@@ -32,6 +32,7 @@ public class BST<T extends Comparable<T>>
         return isLeftValid && isRightValid;
     }
 
+    //On l'a fait
     public int getHeight() { return root == null ? 0 : getHeight(root); }
 
     protected int getHeight(Node<T> node)
@@ -43,6 +44,7 @@ public class BST<T extends Comparable<T>>
         return Math.max(getHeight(node.right), getHeight(node.left)) + 1;
     }
 
+    //On l'a fait
 	public void insert(T elem) { root = insert(root, elem); }
 
 	private Node<T> insert(Node<T> node, T elem)
@@ -62,6 +64,7 @@ public class BST<T extends Comparable<T>>
         return node;
 	}
 
+    //On l'a fait
     public boolean contains(T elem) { return contains(root, elem); }
 
     private boolean contains(Node<T> node, T elem)
@@ -80,7 +83,8 @@ public class BST<T extends Comparable<T>>
 
         return true;
     }
-
+    
+    //On l'a fait
     public ArrayList<T> traversePreOrder()
 	{
 		ArrayList<T> list = new ArrayList<T>();
@@ -88,6 +92,7 @@ public class BST<T extends Comparable<T>>
 		return list;
 	}
 
+    //On l'a fait
 	private void traversePreOrder(Node<T> node, ArrayList<T> list)
 	{
         if (node == null) return;
@@ -100,6 +105,7 @@ public class BST<T extends Comparable<T>>
             traversePreOrder(node.right,list);
 	}
 
+    //On l'a fait
     public ArrayList<T> traversePostOrder()
 	{
 		ArrayList<T> list = new ArrayList<T>();
@@ -107,6 +113,7 @@ public class BST<T extends Comparable<T>>
 		return list;
 	}
 
+    //On l'a fait
 	private void traversePostOrder(Node<T> node, ArrayList<T> list)
 	{   
         if (node == null) return;
@@ -120,6 +127,7 @@ public class BST<T extends Comparable<T>>
             list.add(node.val);
 	}
 
+    //On l'a fait
     public ArrayList<T> traverseInOrder()
     {
         ArrayList<T> list = new ArrayList<T>();
@@ -127,6 +135,7 @@ public class BST<T extends Comparable<T>>
         return list;
     }
 
+    //On l'a fait
     private void traverseInOrder(Node<T> node, ArrayList<T> list)
     {   
         if(node == null) return;
@@ -140,6 +149,7 @@ public class BST<T extends Comparable<T>>
             traverseInOrder(node.right,list);
     }
 
+    //On l'a fait
     public ArrayList<T> traverseReverseOrder()
     {
         ArrayList<T> list = new ArrayList<T>();
@@ -147,6 +157,7 @@ public class BST<T extends Comparable<T>>
         return list;
     }
 
+    //On l'a fait
     private void traverseReverseOrder(Node<T> node, ArrayList<T> list)
     {   
         if(node == null) return;
@@ -159,6 +170,7 @@ public class BST<T extends Comparable<T>>
             traverseReverseOrder(node.left,list);
     }
 
+    //On l'a fait
     public ArrayList<T> traverseLevelOrder()
 	{
 		ArrayList<T> list = new ArrayList<T>();
