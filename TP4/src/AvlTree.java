@@ -1,6 +1,6 @@
 import java.lang.Comparable;
 
-import com.sun.org.apache.regexp.internal.recompile;
+// import com.sun.org.apache.regexp.internal.recompile;
 
 public class AvlTree<T extends Comparable<T>> extends BST<T>
 {
@@ -21,53 +21,39 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
     }
 
     public void insert(T elem) { root = insert(root, elem); }
-    //À COMPLÉTER
+
     private Node<T> insert(Node<T> node, T elem)
     {
-        if(node == null){
+        if(node == null)
             return new Node(elem);
-        }
+        
         int res = elem.compareTo(node.val);
 
         if(res < 0){
             node.left = insert(node.left, elem);
 
             if(getHeight(node.left) - getHeight(node.right)  == 2)
-            {
-                if(elem.compareTo(node.left.val) < 0) {
+                if(elem.compareTo(node.left.val) < 0) 
                     node = balanceLeftLeft(node);
-                }
-
-                else {
+                else 
                     node = balanceLeftRight(node);
-                }
-            }
         }
 
         else if(res > 0) {
             node.right = insert(node.right,elem);
-            if(getHeight(node.right) - getHeight(node.left) == 2){
-                if(elem.compareTo(node.right.val) > 0){
+
+            if(getHeight(node.right) - getHeight(node.left) == 2)
+                if(elem.compareTo(node.right.val) > 0)
                     node = balanceRightRight(node);
-                }
-
-                else{
+                else
                     node = balanceRightLeft(node);
-                }
-            }
-        }
-
-        else{
-            ;
         }
 
         return node;
-
- 
     }
 
     //(noms de fonctions tirés des notes de cours)
-    //Rotate with right child - right right - À COMPLÉTER
+    //Rotate with right child - right right
     private Node<T> balanceRightRight(Node<T> node)
     {
         Node k2 = node.right;
@@ -77,14 +63,15 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
 
         return k2;
     }
-    //DoubleWithRightChild - right left - À COMPLÉTER
+
+    //DoubleWithRightChild - right left
     private Node<T> balanceRightLeft(Node<T> node)
     {
         node.right = balanceLeftLeft(node.right);
         return balanceRightRight(node);
     }
 
-    //Rotate with left child - left left - À COMPLÉTER
+    //Rotate with left child - left left
     private Node<T> balanceLeftLeft(Node<T> node)
     {
         Node k2 = node.left;
@@ -95,14 +82,12 @@ public class AvlTree<T extends Comparable<T>> extends BST<T>
         return k2;
     }
 
-    //Double with left child - left right - À COMPLÉTER
+    //Double with left child - left right
     private Node<T> balanceLeftRight(Node<T> node)
     {
        node.left = balanceRightRight(node.left);
        return balanceLeftLeft(node);
     }
-
-
 }
 
 

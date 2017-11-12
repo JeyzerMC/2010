@@ -1,4 +1,4 @@
-import com.sun.corba.se.impl.orb.ParserTable;
+// import com.sun.corba.se.impl.orb.ParserTable;
 
 public class BibliothequeMain
 {
