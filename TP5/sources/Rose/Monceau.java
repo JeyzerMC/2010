@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 
+
 public class Monceau {
     ArrayList<Node> arbres;
     
@@ -11,33 +12,29 @@ public class Monceau {
     public void fusion(Monceau autre) {
        int taille_max = this.arbres.size() > autre.arbres.size() ? this.arbres.size() : autre.arbres.size();
 
-       ArrayList<Node> tempArbres = new ArrayList<>();
+       ArrayList<Node> tempArbres = new ArrayList<Node>();
+       ArrayList<Node> ABR = new ArrayList<Node>();
+
        Node retenue = null;
        int i = 0;
        Node arbreA, arbreB;
-        System.out.println("CURRENT: " + arbres);
-        System.out.println("AUTRE: " + autre.arbres);
+
        for(; i < taille_max; i++){
            arbreA = i < this.arbres.size() ? this.arbres.get(i) : null;
-           System.out.println("A: " + arbreA);
-           arbreB = i < autre.arbres.size() ? autre.arbres.get(i) : null;
-           System.out.println("B: " + arbreB);
-           
-           ArrayList<Node> ABR = new ArrayList<Node>();
-           
+           arbreB = i < autre.arbres.size() ? autre.arbres.get(i) : null;      
+           ABR.clear();
+
            if(arbreA != null){
                ABR.add(arbreA);
-               System.out.println(arbreA.ordre);
             }
             if(arbreB != null) {
                 ABR.add(arbreB);
-                System.out.println(arbreB.ordre);
             }
            if(retenue != null) {
                ABR.add(retenue);
+               retenue = null;
            }
-           System.out.println("ABR: " + ABR);
-
+        
            try{
                switch (ABR.size()) {
                     case 0:
@@ -67,7 +64,6 @@ public class Monceau {
 
        if(retenue != null) tempArbres.add(retenue);
        this.arbres = tempArbres;
-       System.out.println("FINAL:" + arbres);
     }
     
     public void insert(int val) {
