@@ -77,7 +77,7 @@ public class Node {
     }
 
     private void moveUp() {
-		Node oldParent = parent;
+		/*Node oldParent = parent;
 		Node oldGrandParent = parent.parent;
 		
     	if (oldGrandParent != null) {
@@ -90,7 +90,7 @@ public class Node {
     	
 		oldParent.removeEnfant(this);
 		
-    	ArrayList<Node> enfantsTemp = oldParent.enfants;
+    	ArrayList<Node> enfantsTemp = oldParent.getEnfants();
     	for (Node enfant: enfantsTemp)
 			enfant.parent = this;
 			
@@ -103,7 +103,28 @@ public class Node {
 		this.addEnfant(oldParent);
 		
     	oldParent.ordre--;
-    	this.ordre++;
+		this.ordre++;*/
+		Node temp = this.parent;
+        ArrayList<Node> enfantsTemp;
+        enfantsTemp = this.enfants;
+
+        this.parent.parent.enfants.add(this);
+        this.parent.parent.enfants.remove(this.parent);
+
+        this.enfants = this.parent.enfants;
+        this.enfants.add(this.parent);
+        this.enfants.remove(this);
+        this.parent.enfants = enfantsTemp;
+        for (Node enfant: this.enfants) {
+            enfant.parent = this;
+        }
+        for (Node enfant: this.parent.enfants) {
+            enfant.parent = this.parent;
+        }
+        this.parent = this;
+        this.ordre++;
+        temp.parent = this;
+        temp.ordre--;
     }
 
     public ArrayList<Node> delete() {
@@ -117,7 +138,6 @@ public class Node {
     }
 
     public void print(String tabulation) {
-        // à compléter
     	System.out.print(tabulation + valeur);
     	if (enfants.isEmpty())
     		System.out.println();
@@ -150,7 +170,6 @@ public class Node {
     }
     
     public ArrayList<Integer> getElementsSorted() {
-    	// à compléter
     	ArrayList<Integer> elements = new ArrayList<Integer>();
     	elements.add(valeur);
     	for (Node enfant: enfants)

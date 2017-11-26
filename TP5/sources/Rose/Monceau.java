@@ -8,7 +8,7 @@ public class Monceau {
     public Monceau() {
         arbres = new ArrayList<Node>();
     }
-    
+
     public void fusion(Monceau autre) {
        int taille_max = this.arbres.size() > autre.arbres.size() ? this.arbres.size() : autre.arbres.size();
 
@@ -74,38 +74,42 @@ public class Monceau {
     }
     
     public boolean delete (int val) {
-        boolean res = false;
+        boolean removed = false;
+        Node found = null;
+        Monceau monc_a_reinserer = null;
+        ArrayList<Node> found_nodes;
 
-        //pour chaque arbre
         for(int i = 0; i < arbres.size(); i++) {
-            Node found = arbres.get(i).findValue(val);
-            //tant quon trouve la valeur
-            while(found != null){
-                res = true;
-                //tableaux a fusionner
-                ArrayList<Node> nouvNodes = found.delete();
-                //pour chaque tableau
-                for (Node noeud : nouvNodes) {
-                    //faire un nouveau monceau contenant l'arbre
-                    Monceau nouvMonceau = new Monceau();
-                    nouvMonceau.arbres.add(noeud);
-                    //remettre dans le monceau
-                    this.fusion(nouvMonceau);
-                }
-                //rechercher
-                found = (arbres.get(i)).findValue(val);
+            if(arbres.get(i) != null) {
+                found = arbres.get(i).findValue(val);
 
+                while(found!=null) {
+                    monc_a_reinserer = new Monceau();
+                    removed = true;
+                    arbres.set(i, null);
+
+                    found_nodes = found.delete();
+
+                    for (Node noeud : found_nodes) {
+                        noeud.print("  ");
+                        System.out.println("ORDRE: " + noeud.ordre);
+                        monc_a_reinserer.arbres.add(noeud);
+                    }
+
+                    fusion(monc_a_reinserer);
+                    found = arbres.get(i) == null ? null : (arbres.get(i)).findValue(val);
+                }
             }
-            
         }
-        
-        return res;
+
+        return removed;
+
     }
     
     public void print() {
         for (Node arbre : arbres){
             if(arbre != null){
-                System.out.print("L'ordre de l'arbre est:" + arbre.ordre + "\n");
+                System.out.print("L'ordre de l'arbre est: " + arbre.ordre + "\n");
                 arbre.print("   ");
             }
         }
