@@ -91,8 +91,7 @@ public class Monceau {
                     found_nodes = found.delete();
 
                     for (Node noeud : found_nodes) {
-                        noeud.print("  ");
-                        System.out.println("ORDRE: " + noeud.ordre);
+
                         monc_a_reinserer.arbres.add(noeud);
                     }
 

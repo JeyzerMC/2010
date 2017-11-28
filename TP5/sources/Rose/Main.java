@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
-//import org.classpath.icedtea.pulseaudio.Stream.SuspendedListener;
+//Par Rose Hirigoyen en Mehdi Chaid 
 
 public class Main {
 	public static void main(String[] args) {
@@ -76,7 +73,7 @@ public class Main {
 		System.out.println("===============================");
 		System.out.println("TEST 2 : SORTED");
 		
-		System.out.println("Attendu : [3, 4, 5, 6, 7, 8, 9, 12, 13]");
+		System.out.println("Attendu : [3, 4, 5, 7, 8, 9, 12, 13]");
 		System.out.println("Reçu : " + a.getElementsSorted());
 		
 
@@ -103,7 +100,7 @@ public class Main {
 		System.out.println("===============================");
 		System.out.println("TEST 5 : SORTED");
 		
-		System.out.println("Attendu: [3, 7, 8, 13]");
+		System.out.println("Attendu: [3]");
 		System.out.println("Reçu: " + a.getElementsSorted());
 
 		System.out.println("===============================");
