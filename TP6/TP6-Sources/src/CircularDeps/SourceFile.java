@@ -20,4 +20,8 @@ public class SourceFile {
     {
         this.dependencies.add(file);
     }
+    
+    public String getName(){
+        return name;
+    }
 }
