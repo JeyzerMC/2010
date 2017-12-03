@@ -17,8 +17,29 @@ public class PolyNet {
         int totalCableLength = 0;
         PriorityQueue<PolyNetConnection> knownConnections = new PriorityQueue<>();
         HashSet<PolyNetNode> visitedNodes = new HashSet<>();
-
-        // À compléter
+        
+        PolyNetConnection currConn = new PolyNetConnection(nodes[0],0);
+        
+        do {
+            for(PolyNetConnection c : currConn.getConnectedNode().getConnections()){
+                if(!visitedNodes.contains(c.getConnectedNode()))
+                    knownConnections.offer(c);
+            }           
+           
+            totalCableLength += currConn.getDistance();
+            visitedNodes.add(currConn.getConnectedNode());
+            
+            do{
+                currConn = knownConnections.poll();
+            } while(knownConnections.size() > 0 && visitedNodes.contains(currConn.getConnectedNode()));
+     
+        } while(visitedNodes.size()!=nodes.length || knownConnections.size() != 0);
+       
+        
+        
+        
+        
+        
 
         return totalCableLength;
     }
